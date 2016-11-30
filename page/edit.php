@@ -1,5 +1,6 @@
 <?php
-	//edit.php
+	//3.kodutöö
+
 	require("../functions.php");
 	
 	require("../class/Athletes.class.php");
@@ -29,9 +30,8 @@
 		exit();
 	}
 	
-	
-	
-	// kui ei ole id'd aadressireal siis suunan
+
+	// kui ei ole id'd aadressireal, siis suunan
 	if(!isset($_GET["id"])){
 		header("Location: data.php");
 		exit();
@@ -60,4 +60,3 @@
   	
 	<input type="submit" name="update" value="Salvesta">
   </form>
-  

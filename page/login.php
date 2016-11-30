@@ -1,5 +1,5 @@
 <?php
-	//3.kodutöö m
+	//3.kodutöö
 	//võtab ja kopeerib faili sisu
 	require("../functions.php");
 	
@@ -13,11 +13,10 @@
 	if (isset ($_SESSION["userId"])) {
 		
 		header("Location: data.php");
-		exit();
-		
+		exit();	
 	}
-	//var_dump(5.5);
 	
+	//var_dump(5.5);
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
@@ -40,7 +39,7 @@
 	
 	// kas sisse logimisel oli e-post olemas
 	if ( isset ( $_POST["loginEmail"] ) ) {
-		
+			
 		if ( empty ( $_POST["loginEmail"] ) ) {
 			
 			// oli email, kuid see oli tühi
@@ -49,10 +48,8 @@
 		} else {
 			
 			// email on õige, salvestan väärtuse muutujasse
-			$loginEmail = $_POST["loginEmail"];
-			
-		}
-		
+			$loginEmail = $_POST["loginEmail"];		
+		}	
 	}
 	
 	
@@ -123,8 +120,6 @@
 	}
 	
 	
-	
-	
 	$gender = "male";
 	// KUI Tühi
 	// $gender = "";
@@ -170,7 +165,6 @@
 	
 	
 	
-	
 	// Kus tean et ühtegi viga ei olnud ja saan kasutaja andmed salvestada
 	if ( isset($_POST["signupName"]) &&
 		 isset($_POST["gender"]) && 
@@ -198,9 +192,7 @@
 		$signupPassword=cleanInput($password);
 		$User->signup($signupName, $signupAge, $signupEmail, $Helper->cleanInput($password), $gender);
 	   
-	   
-	
-	   
+  
 		
 	}
 	
@@ -284,8 +276,7 @@
 			
 				</form>
 			</div>
-			
-					
+							
 		</div>
 		
 	</div>

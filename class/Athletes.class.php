@@ -44,11 +44,6 @@ class Athlete {
 		echo "Sorteerin: ".$sort." ".$orderBy." ";
 		
 	
-
-
-
-
-
 		//kas otsib
 		if ($q != "") {
 			
@@ -65,14 +60,12 @@ class Athlete {
 			$stmt->bind_param("siisis", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 			
 		} else {
-			
 			$stmt = $this->connection->prepare("
 				SELECT id, gender, age, date, TypeOfTraining, WorkoutHours, feeling
 				FROM AthletesData_2
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
-			");
-			
+			");	
 		}
 		
 		echo $this->connection->error;
@@ -80,17 +73,14 @@ class Athlete {
 		$stmt->bind_result($id, $gender, $age, $date, $TypeOfTraining, $WorkoutHours, $feeling);
 		$stmt->execute();
 		
-		
 		//tekitan massiivi
 		$result = array();
 		
-		// tee seda seni, kuni on rida andmeid
-		// mis vastab select lausele
+		// tee seda seni, kuni on rida andmeid, mis vastab select lausele
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$Athlete = new StdClass();
-			
+			$Athlete = new StdClass();	
 			$Athlete->id = $id;
 			$Athlete->gender = $gender;
 			$Athlete->age = $age;
@@ -98,15 +88,12 @@ class Athlete {
 			$Athlete->TypeOfTraining = $TypeOfTraining;
 			$Athlete->WorkoutHours = $WorkoutHours;
 			$Athlete->feeling = $feeling;
-
-
-			
+	
 			// iga kord massiivi lisan juurde nr märgi
 			array_push($result, $Athlete);
 		}
 		
 		$stmt->close();
-		
 		
 		return $result;
 	}
@@ -114,7 +101,6 @@ class Athlete {
 	function getSingle($edit_id){
 
 		$stmt = $this->connection->prepare("SELECT gender, age, date, TypeOfTraining, WorkoutHours, feeling FROM AthletesData_2 WHERE id=? AND deleted IS NULL");
-
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($gender, $age, $date, $TypeOfTraining, $WorkoutHours, $feeling);
 		$stmt->execute();
@@ -132,9 +118,7 @@ class Athlete {
 			$Athlete->WorkoutHours = $WorkoutHours;
 			$Athlete->feeling = $feeling;
 
-
-			
-			
+	
 		}else{
 			// ei saanud rida andmeid kätte
 			// sellist id'd ei ole olemas
@@ -144,15 +128,9 @@ class Athlete {
 		}
 		
 		$stmt->close();
-		
-		
-		return $Athlete;
-		
+			
+		return $Athlete;	
 	}
-
-
-
-
 
 
 	function save ($gender, $age, $date, $TypeOfTraining, $WorkoutHours, $feeling) {
@@ -189,12 +167,8 @@ class Athlete {
 		}
 		
 		$stmt->close();
-		
-		
+			
 	}
-
 } 
 
-
-?>
-	
+?>	

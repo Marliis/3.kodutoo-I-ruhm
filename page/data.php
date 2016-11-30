@@ -1,5 +1,5 @@
 <?php 
-	// 3.kodutöö M
+	// 3.kodutöö
 	require("../functions.php");
 	
 	require("../class/Athletes.class.php");
@@ -13,8 +13,7 @@
 	if (!isset ($_SESSION["userId"])) {
 		
 		header("Location: login.php");
-		exit();
-		
+		exit();	
 	}
 	
 	//kui on logout aadressireal, siis login välja
@@ -23,7 +22,7 @@
 		session_destroy();
 		header("Location: login.php");
 		exit();
-		
+			
 	}
 	
 	$msg = "";
@@ -33,7 +32,6 @@
 		//kui ühe näitame siis kustuta ära, et pärast refreshi ei näitaks
 		unset($_SESSION["message"]);
 	}
-	
 	
 	
 	if ( isset($_POST["gender"]) && 
@@ -49,14 +47,13 @@
 		!empty($_POST["WorkoutHours"]) && 
 		!empty($_POST["feeling"]) 
 	  ) {
-		  
+		 
 		$Athlete->save($Helper->cleanInput($_POST["gender"]), $Helper->cleanInput($_POST["age"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["TypeOfTraining"]), $Helper->cleanInput($_POST["WorkoutHours"]), $Helper->cleanInput($_POST["feeling"]));
 		
 	}
 	
 	
 	//saan kõik treenija andmed
-	
 	//kas otsib
 	if(isset($_GET["q"])){
 		
@@ -169,10 +166,7 @@
 					</a>
 				 </th>";
 				 
-				 
-				 
-				 
-				 
+				 		 
 		$ageOrder = "ASC";
 		$arrow = "&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -185,12 +179,7 @@
 						Vanus ".$arrow."
 					</a>
 				 </th>";
-				 
-				 
-				 
-				 
-				 
-				 
+		 
 				 
 		$dateOrder = "ASC";
 		$arrow = "&darr;";
@@ -205,9 +194,7 @@
 					</a>
 				 </th>";
 				 
-				 
-				 
-				 
+			 
 		$TypeOfTrainingOrder = "ASC";
 		$arrow = "&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -221,10 +208,7 @@
 					</a>
 				 </th>";
 				 
-				 
-				 
-				 
-				 
+		 
 		$WorkoutHoursOrder = "ASC";
 		$arrow = "&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -238,10 +222,7 @@
 					</a>
 				 </th>";
 				 
-			
-			
-			
-				 
+	 
 		$feelingOrder = "ASC";
 		$arrow = "&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -282,16 +263,13 @@
 	
 	$listHtml = "<br><br>";
 	
-	foreach($AthleteData as $c){
-		
+	foreach($AthleteData as $c){	
 		
 		//$listHtml .= "<h1 style='color:".$c->AthleteTypeOfTraining."'>".$c->TypeOfTraining."</h1>";
 		//$listHtml .= "<p>color = ".$c->AthleteTypeOfTraining."</p>";
 	}
 	
 	echo $listHtml;
-	
-	
-	
+
 
 ?>
